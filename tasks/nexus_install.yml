@@ -429,6 +429,10 @@
     dest: "{{ nexus_installation_dir }}/nexus-{{ nexus_version }}/deploy/"
   with_items: "{{ nexus_plugin_urls }}"
 
+- name: Sleep for 1 minute (maybe not enough)
+  pause: 
+    minutes: 1
+    
 - name: Access scripts API endpoint with defined admin password
   uri:
     url: "{{ nexus_api_scheme }}://{{ nexus_api_hostname }}:{{ nexus_api_port }}\
