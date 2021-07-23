@@ -17,6 +17,7 @@ parsed_args.each { blobstoreDef ->
             if (blobstoreDef.type == "S3") {
                 blobStore.createS3BlobStore(blobstoreDef.name, blobstoreDef.config)
                 msg = "S3 blobstore {} created"
+                sleep(1000)
             } else {
                 blobStore.createFileBlobStore(blobstoreDef.name, blobstoreDef.path)
                 msg = "File blobstore {} created"
