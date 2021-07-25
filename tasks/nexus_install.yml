@@ -429,10 +429,14 @@
     dest: "{{ nexus_installation_dir }}/nexus-{{ nexus_version }}/deploy/"
   with_items: "{{ nexus_plugin_urls }}"
 
+- name: Wait for port 
+  wait_for:
+      port: "{{ nexus_api_port}}"
+
 - name: Sleep for a bit
   pause: 
-    seconds: {{ nexus_pause }}
-    
+    seconds: 5
+
 - name: Access scripts API endpoint with defined admin password
   uri:
     url: "{{ nexus_api_scheme }}://{{ nexus_api_hostname }}:{{ nexus_api_port }}\
